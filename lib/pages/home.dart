@@ -4,8 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:futseeker/constant.dart';
 import 'package:futseeker/models/lapangan.dart';
 import 'package:futseeker/pages/booking.dart';
+import 'package:futseeker/pages/home/banner.dart';
+import 'package:futseeker/pages/login.dart';
+import 'package:futseeker/pages/profil.dart';
 import 'package:futseeker/services/lapangan.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -30,6 +34,34 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  handleLogout() {
+    Get.defaultDialog(
+      title: 'Logout',
+      content: Text('Anda yakin akan keluar? Sesi anda akan terhapus!'),
+      titlePadding: EdgeInsets.all(20),
+      contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      actions: [
+        TextButton(
+          onPressed: () => Get.back(),
+          child: Text('BATAL'),
+        ),
+        TextButton(
+          onPressed: () async {
+            SharedPreferences prefs = await SharedPreferences.getInstance();
+            await prefs.clear();
+
+            Get.offAll(
+              () => LoginScreen(),
+              transition: Transition.downToUp,
+              duration: Duration(milliseconds: 800),
+            );
+          },
+          child: Text('KELUAR'),
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,9 +69,9 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Text('Futseeker'),
         actions: [
           GestureDetector(
-            onTap: () {},
+            onTap: handleLogout,
             child: Icon(
-              Icons.account_circle_outlined,
+              Icons.logout,
               color: Colors.white,
             ),
           ),
@@ -56,53 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     vertical: 20,
                   ),
                   children: [
-                    Padding(
-                      padding: EdgeInsets.only(left: 24, bottom: 8),
-                      child: Text(
-                        'Tersedia jam ini',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15,
-                        ),
-                      ),
-                    ),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      padding: EdgeInsets.symmetric(horizontal: 15),
-                      child: Row(
-                        children: List.generate(
-                          lapangan.length,
-                          (index) {
-                            var item = lapangan[index];
-
-                            return Container(
-                              margin: EdgeInsets.only(
-                                left: 5,
-                                right: 5,
-                                bottom: 20,
-                              ),
-                              decoration: BoxDecoration(
-                                color: cPrimary,
-                                borderRadius: BorderRadius.circular(20),
-                                boxShadow: shadowBase,
-                              ),
-                              height: 130,
-                              width: Get.width * .75,
-                              child: Center(
-                                child: Text(
-                                  item.nama,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 24,
-                                  ),
-                                ),
-                              ),
-                            );
-                          },
-                        ),
-                      ),
-                    ),
+                    HomeBanner(data: lapangan),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 20),
                       child: Column(
@@ -128,7 +114,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               return Container(
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
-                                  boxShadow: shadowBase,
+                                  boxShadow: shadowSm,
                                   color: Colors.white,
                                 ),
                                 width: Get.width,
@@ -212,8 +198,31 @@ class _HomeScreenState extends State<HomeScreen> {
                           color: Colors.white,
                           size: 20,
                         ),
+                        SizedBox(height: 2),
                         Text(
                           'Booking',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 12,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Get.to(() => ProfilScreen(), transition: Transition.rightToLeft);
+                    },
+                    child: Column(
+                      children: [
+                        Icon(
+                          Icons.account_circle,
+                          color: Colors.white,
+                          size: 20,
+                        ),
+                        SizedBox(height: 2),
+                        Text(
+                          'Profil',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 12,
@@ -233,6 +242,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           color: Colors.white,
                           size: 20,
                         ),
+                        SizedBox(height: 2),
                         Text(
                           'Laporan',
                           style: TextStyle(

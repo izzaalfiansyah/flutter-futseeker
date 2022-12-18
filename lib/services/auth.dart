@@ -19,6 +19,7 @@ class AuthService {
           item['password'],
           item['nama'],
           item['telepon'],
+          item['alamat'],
           item['isAdmin'],
         ));
       }

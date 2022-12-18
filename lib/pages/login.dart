@@ -1,7 +1,10 @@
 // ignore_for_file: prefer_const_constructors_in_immutables, prefer_const_literals_to_create_immutables, prefer_const_constructors, invalid_use_of_visible_for_testing_member
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:futseeker/constant.dart';
+import 'package:futseeker/models/user.dart';
 import 'package:futseeker/pages/home.dart';
 import 'package:futseeker/services/auth.dart';
 import 'package:get/get.dart';
@@ -28,9 +31,8 @@ class _LoginScreenState extends State<LoginScreen> {
           password: password.text,
         );
 
-        SharedPreferences.setMockInitialValues({});
         final prefs = await SharedPreferences.getInstance();
-        await prefs.setString('auth', res.id);
+        await prefs.setString('auth', json.encode(User.toJSON(res)));
 
         Get.offAll(
           () => HomeScreen(),

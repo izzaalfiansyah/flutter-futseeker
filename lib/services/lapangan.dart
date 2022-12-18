@@ -31,7 +31,7 @@ class LapanganService {
 
   static update(id, {required nama, required harga}) async {
     var req = json.encode({'nama': nama, 'harga': harga});
-    var res = await http.patch(baseUrl('/lapangan/$id'), body: req);
+    var res = await http.put(baseUrl('/lapangan/$id'), body: req);
 
     if (res.statusCode == 200) {
       return true;

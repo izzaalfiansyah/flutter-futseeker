@@ -30,7 +30,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(Duration(seconds: 2), () {
       Get.offAll(
         () => auth == null ? LoginScreen() : HomeScreen(),
-        transition: Transition.topLevel,
+        transition: Transition.fadeIn,
         duration: Duration(milliseconds: 800),
       );
     });

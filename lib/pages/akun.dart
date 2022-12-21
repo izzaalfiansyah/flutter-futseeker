@@ -4,18 +4,19 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:futseeker/constant.dart';
+import 'package:futseeker/models/user.dart';
 import 'package:futseeker/services/user.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class ProfilScreen extends StatefulWidget {
-  ProfilScreen({Key? key}) : super(key: key);
+class AkunScreen extends StatefulWidget {
+  AkunScreen({Key? key}) : super(key: key);
 
   @override
-  State<ProfilScreen> createState() => _ProfilScreenState();
+  State<AkunScreen> createState() => _AkunScreenState();
 }
 
-class _ProfilScreenState extends State<ProfilScreen> {
+class _AkunScreenState extends State<AkunScreen> {
   TextEditingController username = TextEditingController();
   TextEditingController password = TextEditingController();
   TextEditingController nama = TextEditingController();
@@ -23,7 +24,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
   TextEditingController alamat = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   String id = '';
-  bool isAdmin = false;
+  bool? isAdmin;
 
   @override
   void initState() {
@@ -32,19 +33,18 @@ class _ProfilScreenState extends State<ProfilScreen> {
   }
 
   getUser() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    dynamic auth = json.decode(prefs.getString('auth').toString());
+    User auth = await authUser();
 
     setState(() {
-      id = auth['id'];
-      isAdmin = auth['isAdmin'];
+      id = auth.id;
+      isAdmin = auth.isAdmin;
     });
 
-    username.text = auth['username'];
-    password.text = auth['password'];
-    nama.text = auth['nama'];
-    telepon.text = auth['telepon'];
-    alamat.text = auth['alamat'];
+    username.text = auth.username;
+    password.text = auth.password;
+    nama.text = auth.nama;
+    telepon.text = auth.telepon;
+    alamat.text = auth.alamat;
   }
 
   handleSubmit() async {
@@ -59,7 +59,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
           alamat: alamat.text,
           isAdmin: isAdmin,
         );
-        notif('Profil berhasil diedit', color: Colors.blue);
+        notif('akun berhasil diedit', color: Colors.blue.shade700);
 
         SharedPreferences prefs = await SharedPreferences.getInstance();
         await prefs.setString(
@@ -84,7 +84,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Profil'),
+        title: Text('Akun'),
       ),
       body: ListView(
         padding: EdgeInsets.all(20),
@@ -117,7 +117,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                   SizedBox(height: 20),
                   TextFormField(
                     controller: telepon,
-                    keyboardType: TextInputType.number,
+                    keyboardType: TextInputType.phone,
                     decoration: InputDecoration(
                       hintText: 'Masukkan Telepon',
                       labelText: 'Telepon',

@@ -38,4 +38,20 @@ class Booking {
       status,
     );
   }
+
+  static toJSON(Booking data) {
+    return {
+      'id': data.id,
+      'pemesan': data.pemesan,
+      'lamaJam': data.lamaJam,
+      'jam': data.jam,
+      'tanggal': data.tanggal,
+      'status': data.status,
+      'lapangan': {
+        'id': data.lapangan.id,
+        'nama': data.lapangan.nama,
+        'harga': data.lapangan.harga,
+      },
+    };
+  }
 }

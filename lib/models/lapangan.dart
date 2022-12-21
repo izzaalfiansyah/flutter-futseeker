@@ -12,4 +12,12 @@ class Lapangan {
   }) {
     return Lapangan(id, nama, harga);
   }
+
+  static toJSON(Lapangan item) {
+    return {
+      'id': item.id,
+      'nama': item.nama,
+      'harga': item.harga,
+    };
+  }
 }

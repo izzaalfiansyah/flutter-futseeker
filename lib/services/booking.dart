@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:futseeker/constant.dart';
 import 'package:futseeker/models/booking.dart';
+import 'package:futseeker/models/lapangan.dart';
 import 'package:http/http.dart' as http;
 
 class BookingService {
@@ -15,7 +16,11 @@ class BookingService {
       booking.add(Booking(
         id,
         item['pemesan'],
-        item['lapangan'],
+        Lapangan(
+          '',
+          item['lapangan']['nama'],
+          item['lapangan']['harga'],
+        ),
         item['lamaJam'],
         item['tanggal'],
         item['jam'],

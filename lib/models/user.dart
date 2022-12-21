@@ -5,7 +5,7 @@ class User {
   final String nama;
   final String telepon;
   final String alamat;
-  final bool? isAdmin;
+  final bool isAdmin;
 
   User(
     this.id,

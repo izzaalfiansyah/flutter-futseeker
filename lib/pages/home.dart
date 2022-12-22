@@ -68,7 +68,10 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Futseeker'),
+        title: Image.asset(
+          'assets/futsal8.png',
+          height: 30,
+        ),
         actions: [
           GestureDetector(
             onTap: handleLogout,
@@ -114,7 +117,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     ? [
                         GestureDetector(
                           onTap: () {
-                            Get.to(() => BookingScreen(), transition: Transition.rightToLeft);
+                            Get.to(
+                              () => BookingScreen(),
+                              transition: Transition.rightToLeft,
+                              arguments: [user],
+                            );
                           },
                           child: Column(
                             children: [
@@ -204,7 +211,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     : [
                         GestureDetector(
                           onTap: () {
-                            Get.to(() => BookingScreen(), transition: Transition.rightToLeft);
+                            Get.to(
+                              () => BookingScreen(),
+                              transition: Transition.rightToLeft,
+                              arguments: [user],
+                            );
                           },
                           child: Column(
                             children: [

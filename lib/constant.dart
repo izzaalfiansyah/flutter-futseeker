@@ -5,7 +5,7 @@ import 'package:futseeker/models/user.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-var cPrimary = Colors.red;
+var cPrimary = Colors.indigo;
 var shadowBase = [
   BoxShadow(
     color: Colors.black.withOpacity(.2),

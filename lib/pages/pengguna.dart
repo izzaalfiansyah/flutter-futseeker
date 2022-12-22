@@ -32,7 +32,7 @@ class _PenggunaScreenState extends State<PenggunaScreen> {
   getData() async {
     var res = await UserService.get();
     setState(() {
-      data = res.reversed.toList();
+      data = res;
     });
   }
 
@@ -242,6 +242,7 @@ class _PenggunaScreenState extends State<PenggunaScreen> {
                   ),
                   child: Column(
                     children: [
+                      SizedBox(height: 10),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -309,7 +310,7 @@ class _PenggunaScreenState extends State<PenggunaScreen> {
                                 child: Icon(
                                   Icons.edit_outlined,
                                   color: Colors.blue,
-                                  size: 18,
+                                  size: 20,
                                 ),
                               ),
                               SizedBox(width: 8),
@@ -320,13 +321,42 @@ class _PenggunaScreenState extends State<PenggunaScreen> {
                                 child: Icon(
                                   Icons.delete_outline,
                                   color: Colors.red,
-                                  size: 18,
+                                  size: 20,
                                 ),
                               ),
                             ],
-                          )
+                          ),
                         ],
-                      )
+                      ),
+                      SizedBox(height: 10),
+                      SizedBox(
+                        height: 20,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Transform.scale(
+                              scale: .8,
+                              child: Switch(
+                                value: item.isAdmin,
+                                onChanged: (val) async {
+                                  await UserService.update(
+                                    item.id,
+                                    username: item.username,
+                                    password: item.password,
+                                    nama: item.nama,
+                                    telepon: item.telepon,
+                                    alamat: item.alamat,
+                                    isAdmin: val,
+                                  );
+
+                                  getData();
+                                },
+                              ),
+                            ),
+                            Text('Admin'),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 );

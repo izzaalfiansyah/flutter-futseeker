@@ -25,6 +25,7 @@ class BookingService {
         item['tanggal'],
         item['jam'],
         item['status'],
+        item['operator'] ?? '',
       ));
     });
 
@@ -46,6 +47,7 @@ class BookingService {
       'tanggal': tanggal,
       'jam': jam,
       'lamaJam': lamaJam,
+      'operator': '',
     });
     var res = await http.post(baseUrl('/booking'), body: req);
 
@@ -56,15 +58,14 @@ class BookingService {
     }
   }
 
-  static update(
-    id, {
-    required pemesan,
-    required lapangan,
-    required status,
-    required tanggal,
-    required jam,
-    required lamaJam,
-  }) async {
+  static update(id,
+      {required pemesan,
+      required lapangan,
+      required status,
+      required tanggal,
+      required jam,
+      required lamaJam,
+      required operator}) async {
     var req = json.encode({
       'pemesan': pemesan,
       'lapangan': lapangan,
@@ -72,6 +73,7 @@ class BookingService {
       'tanggal': tanggal,
       'jam': jam,
       'lamaJam': lamaJam,
+      'operator': operator,
     });
     var res = await http.put(baseUrl('/booking/$id'), body: req);
 

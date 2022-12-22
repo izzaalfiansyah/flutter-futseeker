@@ -61,37 +61,34 @@ class _HomeBannerState extends State<HomeBanner> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        GestureDetector(
-          onTap: getLapangan,
-          child: Padding(
-            padding: EdgeInsets.only(left: 24, right: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Tersedia Jam ini',
+        Padding(
+          padding: EdgeInsets.only(left: 24, right: 20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Tersedia Jam ini',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  Get.to(
+                    () => KeterSediaanScreen(),
+                    transition: Transition.downToUp,
+                    duration: Duration(milliseconds: 400),
+                  );
+                },
+                child: Text(
+                  'Selengkapnya',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 15,
                   ),
                 ),
-                TextButton(
-                  onPressed: () {
-                    Get.to(
-                      () => KeterSediaanScreen(),
-                      transition: Transition.downToUp,
-                      duration: Duration(milliseconds: 400),
-                    );
-                  },
-                  child: Text(
-                    'Selengkapnya',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
         data.isNotEmpty

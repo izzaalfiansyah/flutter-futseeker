@@ -57,19 +57,10 @@ class _SplashScreenState extends State<SplashScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Icon(
-                  Icons.sports_soccer_outlined,
-                  size: 90,
-                  color: Colors.white,
-                ),
-                SizedBox(height: 5),
-                Text(
-                  'FUTSEEKER',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                Image.asset(
+                  "assets/futsal4.png",
+                  width: 130,
+                )
               ],
             ),
           ),

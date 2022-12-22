@@ -242,7 +242,7 @@ class _HomeLapanganState extends State<HomeLapangan> {
                                       child: Icon(
                                         Icons.edit_outlined,
                                         color: Colors.blue,
-                                        size: 18,
+                                        size: 20,
                                       ),
                                     ),
                                     SizedBox(width: 8),
@@ -256,7 +256,7 @@ class _HomeLapanganState extends State<HomeLapangan> {
                                       child: Icon(
                                         Icons.delete_outline,
                                         color: Colors.red,
-                                        size: 18,
+                                        size: 20,
                                       ),
                                     ),
                                   ]

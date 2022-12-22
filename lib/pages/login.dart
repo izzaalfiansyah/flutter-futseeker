@@ -52,8 +52,8 @@ class _LoginScreenState extends State<LoginScreen> {
       body: Stack(
         children: [
           Positioned(
-            top: -200,
-            left: -120,
+            top: Get.height * -.25,
+            left: Get.width * -.3,
             child: Transform.rotate(
               angle: -.5,
               child: Container(
@@ -97,11 +97,12 @@ class _LoginScreenState extends State<LoginScreen> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Container(
-                height: Get.height * .5,
+                height: Get.height * .6,
                 padding: EdgeInsets.symmetric(horizontal: 30),
                 child: Form(
                   key: formKey,
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       TextFormField(
                         decoration: InputDecoration(
@@ -152,7 +153,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
-                      SizedBox(height: 40),
+                      SizedBox(height: Get.height * .1),
                     ],
                   ),
                 ),

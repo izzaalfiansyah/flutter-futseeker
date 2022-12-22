@@ -8,6 +8,7 @@ class Booking {
   final String tanggal;
   final String jam;
   final int status;
+  final String operator;
 
   Booking(
     this.id,
@@ -17,6 +18,7 @@ class Booking {
     this.tanggal,
     this.jam,
     this.status,
+    this.operator,
   );
 
   factory Booking.fromJSON({
@@ -27,6 +29,7 @@ class Booking {
     tanggal,
     jam,
     status,
+    operator,
   }) {
     return Booking(
       id,
@@ -36,6 +39,7 @@ class Booking {
       tanggal,
       jam,
       status,
+      operator,
     );
   }
 
@@ -52,6 +56,7 @@ class Booking {
         'nama': data.lapangan.nama,
         'harga': data.lapangan.harga,
       },
+      'operator': data.operator,
     };
   }
 }

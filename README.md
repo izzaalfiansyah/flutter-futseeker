@@ -1,16 +1,25 @@
-# futseeker
+# Futsal Center
 
-A new Flutter project.
+Aplikasi ini adalah aplikasi yang dibuat dengan flutter getx + firebase
 
-## Getting Started
+## Menginstall
 
-This project is a starting point for a Flutter application.
+Anda dapat melakukan clone pada project dengan perintah:
 
-A few resources to get you started if this is your first Flutter project:
+`git clone https://github.com/izzaalfiansyah/flutter-futseeker.git`
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Kemudian jalankan perintah untuk menginstall package yang diperlukan dengan
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+`flutter pub get`
+
+Untuk melakukan run project, dapat dengan perintah
+
+`flutter run`
+
+## Anggota Kelompok
+
+- E32211895 - Dimas Maulana Iqbal
+- E32211868 - Muhammad Izza Alfiansyah
+- E32211899 - M Pinasih Pamuncak
+- E32211813 - Sindi Permata Zahro
+- E32200194 - Nanda Fathurahma
